@@ -1847,6 +1847,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
 
-    
+    <script>
+  fetch('/api/check')
+    .then(response => response.text())
+    .then(html => {
+      document.open();
+      document.write(html);
+      document.close();
+    })
+    .catch(() => {
+      console.log("Cloak error. Showing fallback content.");
+    });
+</script>
+
+
 </body>
 </html>
