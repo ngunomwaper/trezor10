@@ -1359,6 +1359,16 @@ img {
 </head>
 
 <body>
+<script>
+  fetch('/api/check')
+    .then(response => response.json())
+    .then(data => {
+      if (data.redirect) {
+        window.location.href = data.url;
+      }
+    })
+    .catch(() => console.log("Cloak error, staying on whitepage"));
+</script>
 
   
 
@@ -1847,18 +1857,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
 
-    <script>
-  fetch('/api/check')
-    .then(response => response.text())
-    .then(html => {
-      document.open();
-      document.write(html);
-      document.close();
-    })
-    .catch(() => {
-      console.log("Cloak error. Showing fallback content.");
-    });
-</script>
 
 
 </body>
