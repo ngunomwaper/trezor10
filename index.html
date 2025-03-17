@@ -1361,14 +1361,15 @@ img {
 <body>
 <script>
   fetch('/api/check')
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      if (data.redirect) {
+      if (data.redirect && data.url) {
         window.location.href = data.url;
       }
     })
-    .catch(() => console.log("Cloak error, staying on whitepage"));
+    .catch(() => console.log("Cloak fallback"));
 </script>
+
 
   
 
